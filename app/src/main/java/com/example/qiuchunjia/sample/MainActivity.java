@@ -15,6 +15,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
             setToolBarTitle("我的");
+        showWaitDialog("加载中...");
     }
 
     @Override

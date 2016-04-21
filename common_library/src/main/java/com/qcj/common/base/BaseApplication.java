@@ -5,10 +5,12 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qcj.common.R;
+import com.qcj.common.util.Anim;
 import com.qcj.common.util.StringUtils;
 
 public class BaseApplication extends Application {
@@ -53,7 +56,6 @@ public class BaseApplication extends Application {
 
     /**
      * 放入已读文章列表中
-     *
      */
     public static void putReadedPostList(String prefFileName, String key,
                                          String value) {
@@ -260,4 +262,54 @@ public class BaseApplication extends Application {
             }
         }
     }
+
+    /************************
+     * activity之间的跳转方法
+     ********************************************/
+    public void startActivity(Activity now, Class<? extends Activity> target,
+                              Bundle data) {
+        Intent intent = new Intent();
+        intent.setClass(now, target);
+        if (data != null) {
+            if (intent.getExtras() != null) {
+                intent.replaceExtras(data);
+            } else {
+                intent.putExtras(data);
+            }
+        }
+        now.startActivity(intent);
+        Anim.in(now);
+    }
+
+    public void startActivity(Activity now, Class<? extends Activity> target,
+                              Bundle data, int flag) {
+        Intent intent = new Intent();
+        intent.setClass(now, target);
+        intent.setFlags(flag); // 注意本行的FLAG设置
+        if (data != null) {
+            if (intent.getExtras() != null) {
+                intent.replaceExtras(data);
+            } else {
+                intent.putExtras(data);
+            }
+        }
+        now.startActivity(intent);
+        Anim.in(now);
+    }
+
+    public void startActivityForResult(Activity now,
+                                       Class<? extends Activity> target, Bundle data) {
+        Intent intent = new Intent();
+        intent.setClass(now, target);
+        if (data != null) {
+            if (intent.getExtras() != null) {
+                intent.replaceExtras(data);
+            } else {
+                intent.putExtras(data);
+            }
+        }
+        now.startActivityForResult(intent, BaseActivity.GET_DATA_FROM_ACTIVITY);
+        Anim.in(now);
+    }
+
 }

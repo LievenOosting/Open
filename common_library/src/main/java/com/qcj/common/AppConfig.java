@@ -18,7 +18,7 @@ import java.util.Properties;
  * 
  */
 public class AppConfig {
-
+    public final static String ACTIVITY_TRANSFER_BUNDLE = "activity_transfer_bundle";
     private final static String APP_CONFIG = "config";
 
     public final static String CONF_COOKIE = "cookie";
