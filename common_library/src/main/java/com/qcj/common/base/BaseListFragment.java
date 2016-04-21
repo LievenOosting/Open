@@ -17,18 +17,6 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import net.oschina.app.AppContext;
-import net.oschina.app.R;
-import net.oschina.app.bean.Entity;
-import net.oschina.app.bean.ListEntity;
-import net.oschina.app.bean.Result;
-import net.oschina.app.bean.ResultBean;
-import net.oschina.app.cache.CacheManager;
-import net.oschina.app.ui.empty.EmptyLayout;
-import net.oschina.app.util.StringUtils;
-import net.oschina.app.util.TDevice;
-import net.oschina.app.util.ThemeSwitchUtils;
-import net.oschina.app.util.XmlUtils;
 
 import org.apache.http.Header;
 
@@ -38,26 +26,17 @@ import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 @SuppressLint("NewApi")
 public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener,
         OnScrollListener {
 
     public static final String BUNDLE_KEY_CATALOG = "BUNDLE_KEY_CATALOG";
-
-    @InjectView(R.id.swiperefreshlayout)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-
-    @InjectView(R.id.listview)
     protected ListView mListView;
 
     protected ListBaseAdapter<T> mAdapter;
 
-    @InjectView(R.id.error_layout)
     protected EmptyLayout mErrorLayout;
 
     protected int mStoreEmptyState = -1;
@@ -86,7 +65,6 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.inject(this, view);
         initView(view);
     }
 
