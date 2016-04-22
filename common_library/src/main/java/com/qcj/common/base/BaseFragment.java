@@ -24,11 +24,6 @@ import java.io.Serializable;
  */
 public abstract class BaseFragment extends Fragment implements
         View.OnClickListener, UIInterface {
-    public static final int STATE_NONE = 0;
-    public static final int STATE_REFRESH = 1;
-    public static final int STATE_LOADMORE = 2;
-    public static final int STATE_NOMORE = 3;
-    public static int mState = STATE_NONE;
     private View mView;  //父布局的view
 
     protected LayoutInflater mInflater;

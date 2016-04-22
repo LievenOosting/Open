@@ -36,7 +36,7 @@ import java.util.List;
  * @param <T>
  */
 @SuppressLint("NewApi")
-public abstract class BaseListFragment<T extends Entity> extends BaseFragment
+public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         implements OnItemClickListener, RefreshListener {
     /***************
      * 列表存在的状态
@@ -55,7 +55,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
     protected EmptyLayout mErrorLayout;
     protected int mStoreEmptyState = -1;
     protected int mCurrentPage = 0;
-    protected int mCatalog = 1;
+    protected int mCatalog = 1;   //种类
 
     private AsyncTask<String, Void, ListEntity<T>> mCacheTask;   //缓存异步
     private ParserTask mParserTask;  //解析异步
@@ -66,18 +66,9 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        if (args != null) {
-            mCatalog = args.getInt(BUNDLE_KEY_CATALOG, 0);
-        }
-    }
-
-    @Override
     public void initView() {
-        mListView = findViewById(R.id.listview);
-        mErrorLayout = findViewById(R.id.error_layout);
+        mListView = (BaseListView) findViewById(R.id.listview);
+        mErrorLayout = (EmptyLayout) findViewById(R.id.error_layout);
         mListView.setRefreshListener(this);  //添加事件
     }
 
@@ -115,11 +106,6 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        mStoreEmptyState = mErrorLayout.getErrorState();
-        super.onDestroyView();
-    }
 
     @Override
     public void onDestroy() {
@@ -221,13 +207,13 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             return true;
         }
         // 第一页若不是主动刷新，缓存存在，优先取缓存的
-        if (CacheManager.isExistDataCache(getActivity(), key) && !refresh
+        if (CacheManager.isExistDataCache(this, key) && !refresh
                 && mCurrentPage == 0) {
             return true;
         }
         // 其他页数的，缓存存在以及还没有失效，优先取缓存的
-        if (CacheManager.isExistDataCache(getActivity(), key)
-                && !CacheManager.isCacheDataFailure(getActivity(), key)
+        if (CacheManager.isExistDataCache(this, key)
+                && !CacheManager.isCacheDataFailure(this, key)
                 && mCurrentPage != 0) {
             return true;
         }
@@ -268,7 +254,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 
     private void readCacheData(String cacheKey) {
         cancelReadCacheTask();
-        mCacheTask = new CacheTask(getActivity()).execute(cacheKey);
+        mCacheTask = new CacheTask(this).execute(cacheKey);
     }
 
     private void cancelReadCacheTask() {
@@ -335,20 +321,16 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
                 AppContext.putToLastRefreshTime(getCacheKey(),
                         StringUtils.getCurTimeStr());
             }
-            if (isAdded()) {
-                if (mState == STATE_REFRESH) {
-                    onRefreshNetworkSuccess();
-                }
-                executeParserTask(responseBytes);
+            if (mState == STATE_REFRESH) {
+                onRefreshNetworkSuccess();
             }
+            executeParserTask(responseBytes);
         }
 
         @Override
         public void onFailure(int arg0, Header[] arg1, byte[] arg2,
                               Throwable arg3) {
-            if (isAdded()) {
-                readCacheData(getCacheKey());
-            }
+            readCacheData(getCacheKey());
         }
     };
 
@@ -407,7 +389,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 
     protected void executeOnLoadDataError(String error) {
         if (mCurrentPage == 0
-                && !CacheManager.isExistDataCache(getActivity(), getCacheKey())) {
+                && !CacheManager.isExistDataCache(this, getCacheKey())) {
             mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
         } else {
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
@@ -453,7 +435,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             try {
                 ListEntity<T> data = parseList(new ByteArrayInputStream(
                         reponseData));
-                new SaveCacheTask(getActivity(), data, getCacheKey()).execute();
+                new SaveCacheTask(BaseListActivity.this, data, getCacheKey()).execute();
                 list = data.getList();
             } catch (Exception e) {
                 e.printStackTrace();
