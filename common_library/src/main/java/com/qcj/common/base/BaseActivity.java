@@ -83,7 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         SystemBarTintManager mTintManager = new SystemBarTintManager(this);
         mTintManager.setStatusBarTintEnabled(true);
         mTintManager.setNavigationBarTintEnabled(true);
-        mTintManager.setTintResource(R.drawable.new_app_navi01);
+        mTintManager.setTintResource(R.mipmap.new_app_navi01);
     }
 
     /**
@@ -216,6 +216,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     public void hideKeyBoard() {
         ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
     @Override
     public void finish() {
         super.finish();

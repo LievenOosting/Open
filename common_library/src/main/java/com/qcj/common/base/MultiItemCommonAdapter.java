@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.qcj.common.interf.MultiItemTypeSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 /*
   autor： qiuchunjia
@@ -17,7 +18,7 @@ public abstract class MultiItemCommonAdapter<T> extends CommonAdapter<T>
 
 	protected MultiItemTypeSupport mMultiItemTypeSupport;
 
-	public MultiItemCommonAdapter(Context context, List<T> datas,
+	public MultiItemCommonAdapter(Context context, ArrayList<T> datas,
 			MultiItemTypeSupport  multiItemTypeSupport)
 	{
 		super(context, datas, -1);

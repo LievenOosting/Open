@@ -7,16 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CommonAdapter<T> extends BaseAdapter {
     private static final String TAG = "CommonAdapter";
     public LayoutInflater mInflater;
     private int layoutId;  //布局id
-    public List<T> mDataList;
+    public ArrayList<T> mDataList;
     public BaseActivity mBaseActivity;
 
-    public CommonAdapter(Context context, List<T> datas, int layoutId) {
+    public CommonAdapter(Context context, ArrayList<T> datas, int layoutId) {
         this.mDataList = datas;
         this.layoutId = layoutId;
         if (context instanceof BaseActivity) {
@@ -52,4 +53,43 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     public abstract void convertView(ViewHolder holder, int pos);
 
+    public void setData(ArrayList<T> data) {
+        mDataList = data;
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<T> getData() {
+        return mDataList == null ? (mDataList = new ArrayList<T>()) : mDataList;
+    }
+
+    public void addData(List<T> data) {
+        if (mDataList != null && data != null && !data.isEmpty()) {
+            mDataList.addAll(data);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void addItem(T obj) {
+        if (mDataList != null) {
+            mDataList.add(obj);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void addItem(int pos, T obj) {
+        if (mDataList != null) {
+            mDataList.add(pos, obj);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(Object obj) {
+        mDataList.remove(obj);
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        mDataList.clear();
+        notifyDataSetChanged();
+    }
 }

@@ -13,7 +13,7 @@ import com.qcj.common.R;
 import com.qcj.common.util.TDevice;
 
 public class EmptyLayout extends LinearLayout implements
-        View.OnClickListener {// , ISkinUIObserver {
+        View.OnClickListener {
 
     public static final int HIDE_LAYOUT = 4;
     public static final int NETWORK_ERROR = 1;

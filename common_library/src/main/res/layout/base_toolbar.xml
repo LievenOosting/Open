@@ -9,7 +9,7 @@
         android:id="@+id/id_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@drawable/new_app_navi01"
+        android:background="@mipmap/new_app_navi01"
         android:minHeight="?attr/actionBarSize"
         app:navigationIcon="@drawable/toolbar_back_selector"
        >
