@@ -120,7 +120,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     protected boolean hasToolBar() {
-        return true;
+        return false;
     }
 
     protected abstract int getLayoutId();

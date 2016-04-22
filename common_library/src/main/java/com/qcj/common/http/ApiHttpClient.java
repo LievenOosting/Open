@@ -17,7 +17,7 @@ public class ApiHttpClient {
 
     public final static String HOST = "www.oschina.net";
     private static String API_URL = "http://www.oschina.net/%s";
-//     public final static String HOST = "192.168.1.11";
+    //     public final static String HOST = "192.168.1.11";
 //     private static String API_URL = "http://192.168.1.11/%s";
     public static final String DELETE = "DELETE";
     public static final String GET = "GET";
@@ -25,7 +25,8 @@ public class ApiHttpClient {
     public static final String PUT = "PUT";
     public static AsyncHttpClient client;
 
-    public ApiHttpClient() {}
+    public ApiHttpClient() {
+    }
 
     public static AsyncHttpClient getHttpClient() {
         return client;
@@ -49,8 +50,19 @@ public class ApiHttpClient {
         log(new StringBuilder("GET ").append(partUrl).toString());
     }
 
+    /**
+     * 只是用来测试
+     *
+     * @param allUrl
+     * @param handler
+     */
+    public static void getAll(String allUrl, AsyncHttpResponseHandler handler) {
+        client.get(allUrl, handler);
+        log(new StringBuilder("GET ").append(allUrl).toString());
+    }
+
     public static void get(String partUrl, RequestParams params,
-            AsyncHttpResponseHandler handler) {
+                           AsyncHttpResponseHandler handler) {
         client.get(getAbsoluteApiUrl(partUrl), params, handler);
         log(new StringBuilder("GET ").append(partUrl).append("&")
                 .append(params).toString());
@@ -82,14 +94,14 @@ public class ApiHttpClient {
     }
 
     public static void post(String partUrl, RequestParams params,
-            AsyncHttpResponseHandler handler) {
+                            AsyncHttpResponseHandler handler) {
         client.post(getAbsoluteApiUrl(partUrl), params, handler);
         log(new StringBuilder("POST ").append(partUrl).append("&")
                 .append(params).toString());
     }
 
     public static void postDirect(String url, RequestParams params,
-            AsyncHttpResponseHandler handler) {
+                                  AsyncHttpResponseHandler handler) {
         client.post(url, params, handler);
         log(new StringBuilder("POST ").append(url).append("&").append(params)
                 .toString());
@@ -101,7 +113,7 @@ public class ApiHttpClient {
     }
 
     public static void put(String partUrl, RequestParams params,
-            AsyncHttpResponseHandler handler) {
+                           AsyncHttpResponseHandler handler) {
         client.put(getAbsoluteApiUrl(partUrl), params, handler);
         log(new StringBuilder("PUT ").append(partUrl).append("&")
                 .append(params).toString());
@@ -113,13 +125,13 @@ public class ApiHttpClient {
 
     public static void setHttpClient(AsyncHttpClient c) {
         client = c;
-        client.addHeader("Accept-Language", Locale.getDefault().toString());
-        client.addHeader("Host", HOST);
-        client.addHeader("Connection", "Keep-Alive");
-        client.getHttpClient().getParams()
-                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
-
-        setUserAgent(ApiClientHelper.getUserAgent(AppContext.getInstance()));
+//        client.addHeader("Accept-Language", Locale.getDefault().toString());
+//        client.addHeader("Host", HOST);
+//        client.addHeader("Connection", "Keep-Alive");
+//        client.getHttpClient().getParams()
+//                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
+//
+//        setUserAgent(ApiClientHelper.getUserAgent(AppContext.getInstance()));
     }
 
     public static void setUserAgent(String userAgent) {

@@ -40,18 +40,18 @@ public class AppContext extends BaseApplication {
         init();
         initLogin();
 
-        Thread.setDefaultUncaughtExceptionHandler(AppException
-                .getAppExceptionHandler(this));
+//        Thread.setDefaultUncaughtExceptionHandler(AppException
+//                .getAppExceptionHandler(this));
         UIHelper.sendBroadcastForNotice(this);
     }
 
     private void init() {
         // 初始化网络请求
         AsyncHttpClient client = new AsyncHttpClient();
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
-        client.setCookieStore(myCookieStore);
+//        PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
+//        client.setCookieStore(myCookieStore);
         ApiHttpClient.setHttpClient(client);
-        ApiHttpClient.setCookie(ApiHttpClient.getCookie(this));
+//        ApiHttpClient.setCookie(ApiHttpClient.getCookie(this));
 
 //        // Log控制器
 //        KJLoger.openDebutLog(true);

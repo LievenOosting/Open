@@ -19,6 +19,9 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     public CommonAdapter(Context context, ArrayList<T> datas, int layoutId) {
         this.mDataList = datas;
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
+        }
         this.layoutId = layoutId;
         if (context instanceof BaseActivity) {
             mInflater = LayoutInflater.from(context);

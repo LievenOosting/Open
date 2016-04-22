@@ -3,7 +3,6 @@ package com.qcj.common.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.R;
 import com.qcj.common.cache.CacheManager;
-import com.qcj.common.interf.ListEntity;
 import com.qcj.common.interf.RefreshListener;
 import com.qcj.common.model.Entity;
 import com.qcj.common.ui.EmptyLayout;
@@ -57,7 +55,7 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
     protected int mCurrentPage = 0;
     protected int mCatalog = 1;   //种类
 
-    private AsyncTask<String, Void, ListEntity<T>> mCacheTask;   //缓存异步
+    private AsyncTask<String, Void, List<T>> mCacheTask;   //缓存异步
     private ParserTask mParserTask;  //解析异步
 
     @Override
@@ -154,11 +152,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         return null;
     }
 
-    protected ListEntity<T> parseList(InputStream is) throws Exception {
+    protected List<T> parseList(InputStream is) throws Exception {
         return null;
     }
 
-    protected ListEntity<T> readList(Serializable seri) {
+    protected List<T> readList(Serializable seri) {
         return null;
     }
 
@@ -264,7 +262,7 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         }
     }
 
-    private class CacheTask extends AsyncTask<String, Void, ListEntity<T>> {
+    private class CacheTask extends AsyncTask<String, Void, List<T>> {
         private final WeakReference<Context> mContext;
 
         private CacheTask(Context context) {
@@ -272,7 +270,7 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         }
 
         @Override
-        protected ListEntity<T> doInBackground(String... params) {
+        protected List<T> doInBackground(String... params) {
             Serializable seri = CacheManager.readObject(mContext.get(),
                     params[0]);
             if (seri == null) {
@@ -283,10 +281,10 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         }
 
         @Override
-        protected void onPostExecute(ListEntity<T> list) {
+        protected void onPostExecute(List<T> list) {
             super.onPostExecute(list);
             if (list != null) {
-                executeOnLoadDataSuccess(list.getList());
+                executeOnLoadDataSuccess(list);
             } else {
                 executeOnLoadDataError(null);
             }
@@ -433,10 +431,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         @Override
         protected String doInBackground(Void... params) {
             try {
-                ListEntity<T> data = parseList(new ByteArrayInputStream(
+                List<T> data = parseList(new ByteArrayInputStream(
                         reponseData));
-                new SaveCacheTask(BaseListActivity.this, data, getCacheKey()).execute();
-                list = data.getList();
+                //强行转为序列化
+                new SaveCacheTask(BaseListActivity.this, (Serializable) data, getCacheKey()).execute();
+                list = data;
             } catch (Exception e) {
                 e.printStackTrace();
 

@@ -1,10 +1,12 @@
 package com.qcj.common.model;
 
+import java.util.List;
+
 /**
  * Created by qiuchunjia on 2016/4/22.
  */
-public abstract class Entity extends Model {
-
+public class Entity extends Model {
+    private List data;
     protected int id;  //实体的id
     protected String cacheKey;  //实体的缓存路径
 
@@ -23,4 +25,5 @@ public abstract class Entity extends Model {
     public void setCacheKey(String cacheKey) {
         this.cacheKey = cacheKey;
     }
+
 }
