@@ -11,33 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0624cde2-0b19-4646-9a7f-2beb2b208b67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/fastjson_1_1_46_android.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_23.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/ListTestActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/api/ApiDataTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/bean/DataModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_test_data.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/util/JUtil.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/common_library/src/main/res/drawable/new_app_navi01.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/common_library/src/main/res/drawable/toast_background.9.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/common_library/src/main/res/drawable/toolbar_back_normal.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/common_library/src/main/res/drawable/toolbar_back_pressed.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/adapter/MyAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/adapter/MyAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/common_library.iml" afterPath="$PROJECT_DIR$/common_library/common_library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/common_library/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/AppContext.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/AppContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseActivity.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseListActivity.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/CommonAdapter.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/CommonAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/http/ApiHttpClient.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/http/ApiHttpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/model/Entity.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/model/Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/util/StreamTool.java" afterPath="$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/util/StreamTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_library/src/main/res/layout/fragment_pull_refresh_listview.xml" afterPath="$PROJECT_DIR$/common_library/src/main/res/layout/fragment_pull_refresh_listview.xml" />
     </list>
     <ignored path="open.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,42 +55,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.64026845">
+              <caret line="158" column="18" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="item_test_data.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_test_data.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.318182">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListTestActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/ListTestActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseListActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseListActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62281877">
-              <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4290#4291#0" expanded="true" />
-                <element signature="e#4317#4318#0" expanded="true" />
-              </folding>
-            </state>
           </provider>
         </entry>
       </file>
@@ -3488,17 +3449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24148148">
-          <caret line="125" column="41" selection-start-line="125" selection-start-column="41" selection-end-line="125" selection-end-column="41" />
-          <folding>
-            <element signature="e#3421#3422#0" expanded="true" />
-            <element signature="e#3449#3450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/AppContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3528,6 +3478,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.8416107">
+          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4290#4291#0" expanded="true" />
+            <element signature="e#4317#4318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/ListTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45637584">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_test_data.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/common_library/src/main/res/layout/fragment_pull_refresh_listview.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.909091">
@@ -3539,36 +3522,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_test_data.xml">
+    <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.318182">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.64026845">
+          <caret line="158" column="18" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/qiuchunjia/sample/ListTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common_library/src/main/java/com/qcj/common/base/BaseListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62281877">
-          <caret line="119" column="38" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4290#4291#0" expanded="true" />
-            <element signature="e#4317#4318#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
