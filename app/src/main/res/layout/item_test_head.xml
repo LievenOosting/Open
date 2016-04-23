@@ -11,9 +11,9 @@
     <!--android:layout_height="80dp"-->
     <!--android:text="Hello World!" />-->
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_head"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="120dp"
         android:gravity="center"
-        android:text="Hello World!" />
+        android:text="我是头部" />
 </RelativeLayout>

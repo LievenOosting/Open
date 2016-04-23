@@ -1,6 +1,8 @@
 package com.example.qiuchunjia.sample;
 
 import android.nfc.Tag;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.qiuchunjia.sample.adapter.MyAdapter;
 import com.example.qiuchunjia.sample.api.ApiDataTest;
@@ -8,7 +10,6 @@ import com.example.qiuchunjia.sample.bean.DataModel;
 import com.qcj.common.base.BaseListActivity;
 import com.qcj.common.base.CommonAdapter;
 import com.qcj.common.util.JUtil;
-import com.qcj.common.util.L;
 import com.qcj.common.util.StreamTool;
 
 import org.json.JSONArray;

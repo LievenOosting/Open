@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.R;
 import com.qcj.common.cache.CacheManager;
-import com.qcj.common.interf.ListEntity;
 import com.qcj.common.interf.RefreshListener;
 import com.qcj.common.model.Entity;
 import com.qcj.common.ui.EmptyLayout;
@@ -37,7 +36,7 @@ import java.util.List;
  */
 @SuppressLint("NewApi")
 public abstract class BaseListFragment<T extends Entity> extends BaseFragment
-        implements OnItemClickListener, RefreshListener {
+        implements RefreshListener {
     /***************
      * 列表存在的状态
      *********************/
@@ -57,7 +56,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
     protected int mCurrentPage = 0;
     protected int mCatalog = 1;
 
-    private AsyncTask<String, Void, ListEntity<T>> mCacheTask;   //缓存异步
+    private AsyncTask<String, Void, List<T>> mCacheTask;   //缓存异步
     private ParserTask mParserTask;  //解析异步
 
     @Override
@@ -93,7 +92,6 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
                 requestData(true);
             }
         });
-        mListView.setOnItemClickListener(this);
         if (mAdapter != null) {
             mListView.setAdapter(mAdapter);
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
@@ -164,22 +162,16 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         return true;
     }
 
-    protected String getCacheKeyPrefix() {
+    protected abstract String getCacheKeyPrefix();
+
+    protected List<T> parseList(InputStream is) throws Exception {
         return null;
     }
 
-    protected ListEntity<T> parseList(InputStream is) throws Exception {
+    protected List<T> readList(Serializable seri) {
         return null;
     }
 
-    protected ListEntity<T> readList(Serializable seri) {
-        return null;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-    }
 
     private String getCacheKey() {
         return new StringBuilder(getCacheKeyPrefix()).append("_")
@@ -278,7 +270,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         }
     }
 
-    private class CacheTask extends AsyncTask<String, Void, ListEntity<T>> {
+    private class CacheTask extends AsyncTask<String, Void, List<T>> {
         private final WeakReference<Context> mContext;
 
         private CacheTask(Context context) {
@@ -286,7 +278,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         }
 
         @Override
-        protected ListEntity<T> doInBackground(String... params) {
+        protected List<T> doInBackground(String... params) {
             Serializable seri = CacheManager.readObject(mContext.get(),
                     params[0]);
             if (seri == null) {
@@ -297,10 +289,10 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         }
 
         @Override
-        protected void onPostExecute(ListEntity<T> list) {
+        protected void onPostExecute(List<T> list) {
             super.onPostExecute(list);
             if (list != null) {
-                executeOnLoadDataSuccess(list.getList());
+                executeOnLoadDataSuccess(list);
             } else {
                 executeOnLoadDataError(null);
             }
@@ -451,10 +443,10 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
         @Override
         protected String doInBackground(Void... params) {
             try {
-                ListEntity<T> data = parseList(new ByteArrayInputStream(
+                List<T> data = parseList(new ByteArrayInputStream(
                         reponseData));
-                new SaveCacheTask(getActivity(), data, getCacheKey()).execute();
-                list = data.getList();
+                new SaveCacheTask(getActivity(), (Serializable) data, getCacheKey()).execute();
+                list = data;
             } catch (Exception e) {
                 e.printStackTrace();
 

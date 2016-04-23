@@ -35,7 +35,7 @@ import java.util.List;
  */
 @SuppressLint("NewApi")
 public abstract class BaseListActivity<T extends Entity> extends BaseActivity
-        implements OnItemClickListener, RefreshListener {
+        implements RefreshListener {
     /***************
      * 列表存在的状态
      *********************/
@@ -82,7 +82,6 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
                 requestData(true);
             }
         });
-        mListView.setOnItemClickListener(this);
         if (mAdapter != null) {
             mListView.setAdapter(mAdapter);
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
@@ -148,22 +147,16 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         return true;
     }
 
-    protected String getCacheKeyPrefix() {
-        return null;
-    }
+    protected abstract String getCacheKeyPrefix();
 
     protected List<T> parseList(InputStream is) throws Exception {
         return null;
     }
 
     protected List<T> readList(Serializable seri) {
-        return null;
+        return (List) seri;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-    }
 
     private String getCacheKey() {
         return new StringBuilder(getCacheKeyPrefix()).append("_")

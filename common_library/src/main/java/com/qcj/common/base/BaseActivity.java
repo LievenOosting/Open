@@ -10,19 +10,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.qcj.common.AppConfig;
 import com.qcj.common.AppManager;
 import com.qcj.common.R;
+import com.qcj.common.helper.SystemBarTintManager;
 import com.qcj.common.helper.ToolBarHelper;
 import com.qcj.common.interf.DialogControl;
 import com.qcj.common.interf.UIInterface;
 import com.qcj.common.util.Anim;
 import com.qcj.common.util.DialogHelp;
-import com.qcj.common.helper.SystemBarTintManager;
 import com.qcj.common.util.TDevice;
 
 import java.io.Serializable;
@@ -134,6 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     protected void init(Bundle savedInstanceState) {
+        mInflater = LayoutInflater.from(this);
     }
 
     @Override
@@ -231,17 +231,8 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     /**
      * 设置序列化返回
-     * <<<<<<< HEAD
      * <p/>
      * 只要传递的值满足序列化就可以了！不管是对象还是对象集合
-     * <p/>
-     * <p/>
-     * =======
-     * <p/>
-     * 只要传递的值满足序列化就可以了！不管是对象还是对象集合
-     * <p/>
-     * <p/>
-     * >>>>>>> 30c0cab2dbae2e7a455a7387ccc0eb9ce34cb1a6
      * 该方法用于当前activity返回后给上一个acvivity传值 对应解析的方法为getReturnResultSeri
      *
      * @param serializable
