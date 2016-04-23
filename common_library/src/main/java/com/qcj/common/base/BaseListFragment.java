@@ -489,4 +489,5 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
             textView.setTextColor(AppContext.getInstance().getResources().getColor(ThemeSwitchUtils.getTitleReadedColor()));
         }
     }
+
 }

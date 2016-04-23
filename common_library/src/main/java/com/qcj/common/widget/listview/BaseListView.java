@@ -2,6 +2,7 @@ package com.qcj.common.widget.listview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.AbsListView;
 
 import com.qcj.common.interf.RefreshListener;
 import com.qcj.common.util.ToastUtils;
@@ -51,8 +52,6 @@ public class BaseListView extends XListView implements XListView.IXListViewListe
         this.setPullLoadEnable(true);
         this.setRefreshTime(getTime());
         this.setXListViewListener(this);
-        this.setFooterViewGone();
-
     }
 
     @Override
@@ -93,6 +92,16 @@ public class BaseListView extends XListView implements XListView.IXListViewListe
 
     public void setRefreshListener(RefreshListener mRefreshListener) {
         this.mRefreshListener = mRefreshListener;
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+        if (totalItemCount == visibleItemCount - firstVisibleItem) {
+            setFooterViewGone();   //当只有一屏幕的时候隐藏
+        }else{
+            setFooterVisable();
+        }
     }
 
     /**
