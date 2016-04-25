@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -21,7 +22,6 @@ import com.qcj.common.AppConfig;
 import com.qcj.common.AppManager;
 import com.qcj.common.R;
 import com.qcj.common.helper.SystemBarTintManager;
-import com.qcj.common.helper.ToolBarHelper;
 import com.qcj.common.interf.DialogControl;
 import com.qcj.common.interf.UIInterface;
 import com.qcj.common.util.Anim;
@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     private ProgressDialog _waitDialog;
     protected LayoutInflater mInflater;
     private SystemBarTintManager mTintManager;
-    private ToolBarHelper mToolBarHelper;
+    private ViewGroup mRootLayout;  //根布局
     private Toolbar mToolbar;
 
     @Override
@@ -61,14 +61,11 @@ public abstract class BaseActivity extends AppCompatActivity implements
         } else {
             setTheme(R.style.AppBaseTheme_Light);
         }
+        mInflater = LayoutInflater.from(this);
         AppManager.getAppManager().addActivity(this);
         onBeforeSetContentLayout();
         initHint();
-        if (hasToolBar()) {
-            setToolBar(getLayoutId());
-        } else {
-            setContentView(getLayoutId());
-        }
+        setWindowView();
         init(savedInstanceState);
         initView();
         initData();
@@ -76,8 +73,33 @@ public abstract class BaseActivity extends AppCompatActivity implements
         _isVisible = true;
     }
 
+    /**
+     * 设置界面
+     */
+    private void setWindowView() {
+        if (hasToolBar()) {
+            setContentView(R.layout.activity_base);
+            mRootLayout = (ViewGroup) findViewById(R.id.root_layout);
+            mToolbar = (Toolbar) findViewById(R.id.toolbar);
+            mInflater.inflate(getLayoutId(), mRootLayout);
+            mToolbar.setTitle("呵呵哒");
+            mToolbar.setLogo(R.mipmap.loading);
+            setSupportActionBar(mToolbar);
+        } else {
+            setContentView(getLayoutId());
+        }
+    }
+
+    public void setToolbarTitle(String str) {
+        if (mToolbar != null) {
+            TextView textView = (TextView) mToolbar.findViewById(R.id.tv_toolbar_title);
+            textView.setText(str);
+
+        }
+    }
 
     protected void onBeforeSetContentLayout() {
+
     }
 
     /**
@@ -90,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         SystemBarTintManager mTintManager = new SystemBarTintManager(this);
         mTintManager.setStatusBarTintEnabled(true);
         mTintManager.setNavigationBarTintEnabled(true);
-        mTintManager.setTintResource(R.mipmap.new_app_navi01);
+        mTintManager.setTintColor(getResources().getColor(R.color.day_colorPrimaryDark));
     }
 
     /**
@@ -112,25 +134,15 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
 
     /**
-     * 设置toolbar
-     */
-    private void setToolBar(int layoutID) {
-        mToolBarHelper = new ToolBarHelper(this, layoutID);
-        mToolbar = mToolBarHelper.getToolBar();
-        setContentView(mToolBarHelper.getContentView());
-        setSupportActionBar(mToolbar);
-    }
-
-    /**
      * 设置toolbar的标题
      */
     public void setToolBarTitle(String title) {
-        if (mToolbar != null) {
-            if (mToolbar != null) {
-                TextView titleTv = (TextView) mToolbar.findViewById(R.id.base_title_tv);
-                titleTv.setText(title);
-            }
-        }
+//        if (mToolbar != null) {
+//            if (mToolbar != null) {
+//                TextView titleTv = (TextView) mToolbar.findViewById(R.idt.base_title_tv);
+//                titleTv.setText(title);
+//            }
+//        }
     }
 
     /**
@@ -145,7 +157,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     protected boolean hasToolBar() {
-        return false;
+        return true;
     }
 
     protected abstract int getLayoutId();
@@ -159,7 +171,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     }
 
     protected void init(Bundle savedInstanceState) {
-        mInflater = LayoutInflater.from(this);
+
     }
 
     @Override
@@ -257,7 +269,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     /**
      * 设置序列化返回
-     * <p>
+     * <p/>
      * 只要传递的值满足序列化就可以了！不管是对象还是对象集合
      * 该方法用于当前activity返回后给上一个acvivity传值 对应解析的方法为getReturnResultSeri
      *

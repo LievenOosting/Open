@@ -25,6 +25,8 @@ import java.util.List;
  * Created by qiuchunjia on 2016/4/23.
  */
 public class ListHadHeadActivity extends BaseHaveHeaderListActivity<DataModel, DataHeadModel> {
+
+
     @Override
     protected void requestDetailData() {
         ApiDataTest.getData(0, mDetailHandler);
@@ -44,6 +46,7 @@ public class ListHadHeadActivity extends BaseHaveHeaderListActivity<DataModel, D
 
     @Override
     protected void executeOnLoadDetailSuccess(DataHeadModel detailBean) {
+        setToolbarTitle("有头部的列表");
         TextView textView = findViewByHead(R.id.tv_head);
         textView.setText(detailBean.getData());
     }
