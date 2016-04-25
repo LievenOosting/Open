@@ -3,6 +3,8 @@ package com.qcj.common.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -51,14 +55,15 @@ public abstract class BaseActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (AppContext.getNightModeSwitch()) {
             setTheme(R.style.AppBaseTheme_Night);
         } else {
             setTheme(R.style.AppBaseTheme_Light);
         }
-        initHint();
         AppManager.getAppManager().addActivity(this);
         onBeforeSetContentLayout();
+        initHint();
         if (hasToolBar()) {
             setToolBar(getLayoutId());
         } else {
@@ -79,11 +84,32 @@ public abstract class BaseActivity extends AppCompatActivity implements
      * 初始化沉浸式菜单栏
      */
     protected void initHint() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
         SystemBarTintManager mTintManager = new SystemBarTintManager(this);
         mTintManager.setStatusBarTintEnabled(true);
         mTintManager.setNavigationBarTintEnabled(true);
         mTintManager.setTintResource(R.mipmap.new_app_navi01);
     }
+
+    /**
+     * 设置沉浸式菜单
+     *
+     * @param on
+     */
+    private void setTranslucentStatus(boolean on) {
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
 
     /**
      * 设置toolbar
@@ -231,7 +257,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
 
     /**
      * 设置序列化返回
-     * <p/>
+     * <p>
      * 只要传递的值满足序列化就可以了！不管是对象还是对象集合
      * 该方法用于当前activity返回后给上一个acvivity传值 对应解析的方法为getReturnResultSeri
      *

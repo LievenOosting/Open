@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/AppBaseTheme_Light">
+        <!-- API 19 theme customizations can go here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <!--<style name="AppTheme" parent="android:Theme.Holo.Light">
+
+        &lt;!&ndash; API 19 theme customizations can go here. &ndash;&gt;
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>-->
+
+    <style name="Theme.Transparent" parent="AppTheme">
+        <!-- API 19 theme customizations can go here. -->
+        <!-- 设置背景 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置底层可见 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置跳转效果 -->
+        <!--<item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
+    </style>
+
+</resources>
