@@ -4,12 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.R;
+import com.qcj.common.adapter.CommonAdapter;
 import com.qcj.common.cache.CacheManager;
 import com.qcj.common.interf.RefreshListener;
 import com.qcj.common.model.Entity;

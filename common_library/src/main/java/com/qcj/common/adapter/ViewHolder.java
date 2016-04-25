@@ -1,4 +1,4 @@
-package com.qcj.common.base;
+package com.qcj.common.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

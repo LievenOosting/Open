@@ -1,4 +1,4 @@
-package com.qcj.common.base;
+package com.qcj.common.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.qcj.common.interf.MultiItemTypeSupport;
 
 import java.util.ArrayList;
-import java.util.List;
+
 /*
   autor： qiuchunjia
 * 当listview 存在不同的item种类的item的时候就继承这个adapter

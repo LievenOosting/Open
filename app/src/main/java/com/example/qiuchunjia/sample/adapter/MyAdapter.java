@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.example.qiuchunjia.sample.R;
 import com.example.qiuchunjia.sample.bean.DataModel;
-import com.qcj.common.base.CommonAdapter;
-import com.qcj.common.base.ViewHolder;
+import com.qcj.common.adapter.CommonAdapter;
+import com.qcj.common.adapter.ViewHolder;
 import com.qcj.common.util.ToastUtils;
 
 import java.util.ArrayList;

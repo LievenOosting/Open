@@ -8,7 +8,7 @@ import com.example.qiuchunjia.sample.api.ApiDataTest;
 import com.example.qiuchunjia.sample.bean.DataHeadModel;
 import com.example.qiuchunjia.sample.bean.DataModel;
 import com.qcj.common.base.BaseHaveHeaderListActivity;
-import com.qcj.common.base.CommonAdapter;
+import com.qcj.common.adapter.CommonAdapter;
 import com.qcj.common.util.JUtil;
 import com.qcj.common.util.StreamTool;
 
@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.util.List;
 
 /**
