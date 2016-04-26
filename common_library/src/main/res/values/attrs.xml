@@ -5,5 +5,13 @@
         <attr name="allowWidthFull" format="boolean" />
         <attr name="disableViewPager" format="boolean" />
     </declare-styleable>
-
+    <!--viewpagerindicator的属性-->
+    <declare-styleable name="viewpagerindicator">
+        <attr name="visiable_item_count" format="integer" />
+        <attr name="color_text_normal" format="color" />
+        <attr name="color_text_highlightcolor" format="color" />
+        <attr name="size_text_normal" format="dimension" />
+        <attr name="size_text_choose" format="dimension" />
+        <attr name="indicatorColor" format="color" />
+    </declare-styleable>
 </resources>

@@ -7,6 +7,7 @@ import com.example.qiuchunjia.sample.adapter.MyAdapter;
 import com.example.qiuchunjia.sample.api.ApiDataTest;
 import com.example.qiuchunjia.sample.bean.DataHeadModel;
 import com.example.qiuchunjia.sample.bean.DataModel;
+import com.qcj.common.base.AppContext;
 import com.qcj.common.base.BaseHaveHeaderListActivity;
 import com.qcj.common.adapter.CommonAdapter;
 import com.qcj.common.util.JUtil;
@@ -47,6 +48,12 @@ public class ListHadHeadActivity extends BaseHaveHeaderListActivity<DataModel, D
     protected void executeOnLoadDetailSuccess(DataHeadModel detailBean) {
         setToolbarTitle("有头部的列表");
         TextView textView = findViewByHead(R.id.tv_head);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppContext.getInstance().startActivity(ListHadHeadActivity.this, ViewPagerTestActivity.class, null);
+            }
+        });
         textView.setText(detailBean.getData());
     }
 
