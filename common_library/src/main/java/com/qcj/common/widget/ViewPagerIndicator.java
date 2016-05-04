@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 
 import com.qcj.common.R;
+import com.qcj.common.interf.Indicator;
 
 import java.util.List;
 
@@ -26,7 +27,8 @@ import java.util.List;
  * 实现viewpagertab的指示器
  * Created by qiuchunjia on 2016/3/21.
  */
-public class ViewPagerIndicator extends LinearLayout {
+public class ViewPagerIndicator extends LinearLayout implements Indicator {
+
     private static final String TAG = "ViewPagerIndicator";
     /**
      * 绘制三角形的画笔

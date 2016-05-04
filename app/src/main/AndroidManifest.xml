@@ -19,6 +19,7 @@
         <activity android:name=".ListHadHeadActivity" />
         <activity android:name=".ViewPagerTestActivity" />
         <activity android:name=".ViewPager1TestActivity" />
+        <activity android:name=".ViewPager2TestActivity" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

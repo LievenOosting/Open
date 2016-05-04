@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.qiuchunjia.sample.ListHadHeadActivity;
 import com.example.qiuchunjia.sample.R;
 import com.example.qiuchunjia.sample.ViewPager1TestActivity;
+import com.example.qiuchunjia.sample.ViewPager2TestActivity;
 import com.example.qiuchunjia.sample.bean.DataModel;
 import com.qcj.common.adapter.CommonAdapter;
 import com.qcj.common.adapter.ViewHolder;
@@ -41,6 +42,15 @@ public class MyAdapter extends CommonAdapter<DataModel> {
                 public void onClick(View view) {
                     ToastUtils.showToast("position=" + pos);
                     AppContext.getInstance().startActivity(mBaseActivity, ViewPager1TestActivity.class, null);
+                }
+            });
+        }
+        if (pos == 2) {
+            holder.setOnClickListener(R.id.tv_title, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ToastUtils.showToast("position=" + pos);
+                    AppContext.getInstance().startActivity(mBaseActivity, ViewPager2TestActivity.class, null);
                 }
             });
         }
