@@ -22,6 +22,11 @@ public class ListTestActivity extends BaseListActivity<DataModel> {
     private static final String TAG = "ListTestActivity";
 
     @Override
+    public void initView() {
+        super.initView();
+    }
+
+    @Override
     protected CommonAdapter getCommonAdapter() {
         return new MyAdapter(this, null, R.layout.item_test_data);
     }

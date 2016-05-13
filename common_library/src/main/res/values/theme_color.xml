@@ -2,8 +2,8 @@
 <resources>
 
     <!-- day -->
-    <color name="day_colorPrimary">#3F51B5</color>
-    <color name="day_colorPrimaryDark">#303F9F</color>
+    <color name="day_colorPrimary">#330099</color>
+    <color name="day_colorPrimaryDark">#ff0000</color>
     <color name="day_textColor">#333333</color>
     <color name="day_infoTextColor">#999999</color>
     <color name="day_layout_bg_normal">#f6f6f6</color>
@@ -25,5 +25,5 @@
     <color name="night_windows_bg">#1f1f1f</color>
     <color name="night_edit_color">#666666</color>
     <color name="night_edit_hit_color">#999999</color>
-
+    <color name="rippelColor">#330099</color>
 </resources>

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.qcj.common.R;
+import com.qcj.common.interf.Indicator;
 import com.qcj.common.model.ViewPageInfo;
 import com.qcj.common.widget.PagerSlidingTabStrip;
 import com.qcj.common.widget.ViewPagerIndicator;
@@ -25,12 +26,12 @@ import java.util.List;
 public class ViewPageFragmentAdapter1 extends FragmentStatePagerAdapter {
 
     private final Context mContext;
-    protected ViewPagerIndicator mIndicator;
+    protected Indicator mIndicator;
     private final ViewPager mViewPager;
     private final ArrayList<ViewPageInfo> mTabs = new ArrayList<ViewPageInfo>();
 
     public ViewPageFragmentAdapter1(FragmentManager fm,
-                                    ViewPagerIndicator indicator, ViewPager pager) {
+                                    Indicator indicator, ViewPager pager) {
         super(fm);
         mContext = pager.getContext();
         mIndicator = indicator;
