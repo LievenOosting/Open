@@ -5,6 +5,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.base.BaseActivity;
 import com.qcj.common.util.L;
 import com.qcj.common.util.ToastUtils;
+import com.qcj.common.widget.swipebacklayout.lib.app.SwipeBackActivity;
 
 import org.apache.http.Header;
 
@@ -36,14 +37,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected boolean hasToolBar() {
-        return false;
+        return true;
     }
 
     @Override
     public void initData() {
 
     }
-
 
 
 }

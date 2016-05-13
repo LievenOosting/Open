@@ -11,16 +11,13 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+apply from: "config.gradle"
 allprojects {
     repositories {
         jcenter()
     }
 }
-ext {
-    compileSdkVersion = 23
-    buildToolsVersion = "23.0.3"
-}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

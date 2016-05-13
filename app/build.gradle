@@ -1,29 +1,78 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.qiuchunjia.sample"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file("gradlelearn.jks")
+            storePassword "qiuchunjia"
+            keyAlias "gradle"
+            keyPassword "qiuchunjia"
+        }
+        other {
+            storeFile file("other.jks")
+            storePassword "qiuchunjia"
+            keyAlias "gradleother"
+            keyPassword "qiuchunjia"
+        }
+    }
+    productFlavors {//多渠道打包
+        xiaomi {
+            applicationId 'com.wuxiaolong.gradle4android1'
+        }
+
+        googlepaly {
+            applicationId 'com.wuxiaolong.gradle4android2'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                if (variant.buildType.name.equals('release')) {
+                    variant.outputs.each { output ->
+                        def outputFile = output.outputFile
+                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                            def fileName = "gradle4android_v${defaultConfig.versionName}_${releaseTime()}_${hostName()}_${variant.flavorName}.apk"
+                            output.outputFile = new File(outputFile.parent, fileName)
+                        }
+                    }
+                }
+            }
         }
+        other.initWith(buildTypes.release)
+        other {
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            signingConfig signingConfigs.other
+        }
+
     }
+
+}
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+def hostName() {
+    return System.getProperty("user.name") + "@" + InetAddress.localHost.hostName
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile rootProject.ext.dependencies.appcompatV7
+    compile rootProject.ext.dependencies.design
     compile project(':common_library')
-
-
 }

@@ -89,7 +89,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
             setContentView(getLayoutId());
         }
     }
-
     public void setToolbarTitle(String str) {
         if (mToolbar != null) {
             TextView textView = (TextView) mToolbar.findViewById(R.id.tv_toolbar_title);
@@ -109,7 +108,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
-        SystemBarTintManager mTintManager = new SystemBarTintManager(this);
+        mTintManager = new SystemBarTintManager(this);
         mTintManager.setStatusBarTintEnabled(true);
         mTintManager.setNavigationBarTintEnabled(true);
         mTintManager.setTintColor(getResources().getColor(R.color.day_colorPrimaryDark));
