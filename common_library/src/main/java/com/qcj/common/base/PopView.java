@@ -139,9 +139,9 @@ public abstract class PopView implements PopInterface {
      * @param id view的id
      * @return 代表改id的控件
      */
-    public View findViewbyId(int id) {
+    public <T extends View> T findViewbyId(int id) {
         if (mView != null) {
-            return mView.findViewById(id);
+            return (T) mView.findViewById(id);
         }
         return null;
     }
