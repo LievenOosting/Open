@@ -89,6 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
             setContentView(getLayoutId());
         }
     }
+
     public void setToolbarTitle(String str) {
         if (mToolbar != null) {
             TextView textView = (TextView) mToolbar.findViewById(R.id.tv_toolbar_title);
@@ -310,15 +311,15 @@ public abstract class BaseActivity extends AppCompatActivity implements
      * @param flag 区分传的值
      * @return
      */
-    public Serializable getReturnResultSeri(int resultCode, Intent intent,
-                                            String flag) {
+    public <T extends Serializable> T getReturnResultSeri(int resultCode, Intent intent,
+                                                          String flag) {
         String defaultFlag = AppConfig.ACTIVITY_TRANSFER_BUNDLE;
         if (resultCode == BaseActivity.ACTIVTIY_TRANFER && intent != null) {
             if (flag != null) {
                 defaultFlag = flag;
             }
             Bundle bundle = intent.getExtras();
-            return bundle.getSerializable(defaultFlag);
+            return (T) bundle.getSerializable(defaultFlag);
         }
         return null;
     }
@@ -344,7 +345,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
      * @param flag   可以传可以不传，有默认的
      * @return
      */
-    public Serializable getDataFromIntent(Intent intent, String flag) {
+    public <T extends Serializable> T getDataFromIntent(Intent intent, String flag) {
         String defaultFlag = AppConfig.ACTIVITY_TRANSFER_BUNDLE;
         if (intent != null) {
             Bundle bundle = intent.getExtras();
@@ -352,7 +353,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
                 if (flag != null) {
                     defaultFlag = flag;
                 }
-                return bundle.getSerializable(defaultFlag);
+                return (T) bundle.getSerializable(defaultFlag);
             }
         }
         return null;

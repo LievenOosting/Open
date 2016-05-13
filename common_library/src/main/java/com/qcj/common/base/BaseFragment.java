@@ -16,12 +16,7 @@ import com.qcj.common.interf.UIInterface;
 import java.io.Serializable;
 
 
-/**
- * 碎片基类
- *
- * @author FireAnt（http://my.oschina.net/LittleDY）
- * @created 2014年9月25日 上午11:18:46
- */
+
 public abstract class BaseFragment extends Fragment implements
         View.OnClickListener, UIInterface {
     private View mView;  //父布局的view
