@@ -60,7 +60,7 @@ public abstract class BaseListFragment<T extends Entity> extends BaseFragment
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_pull_refresh_listview;
+        return R.layout.base_fragment_pull_refresh_listview;
     }
 
     @Override

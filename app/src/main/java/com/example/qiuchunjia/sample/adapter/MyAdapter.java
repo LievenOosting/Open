@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.example.qiuchunjia.sample.BezierActivity;
 import com.example.qiuchunjia.sample.ListHadHeadActivity;
+import com.example.qiuchunjia.sample.ListRecycleActivity;
 import com.example.qiuchunjia.sample.R;
 import com.example.qiuchunjia.sample.ViewPager1TestActivity;
 import com.example.qiuchunjia.sample.ViewPager2TestActivity;
@@ -41,6 +42,8 @@ public class MyAdapter extends CommonAdapter<DataModel> {
                                                            AppContext.getInstance().startActivity(mBaseActivity, ViewPager2TestActivity.class, null);
                                                        } else if (pos == 3) {
                                                            AppContext.getInstance().startActivity(mBaseActivity, BezierActivity.class, null);
+                                                       } else if (pos == 4) {
+                                                           AppContext.getInstance().startActivity(mBaseActivity, ListRecycleActivity.class, null);
                                                        } else {
                                                            AppContext.getInstance().startActivity(mBaseActivity, ListHadHeadActivity.class, null);
                                                        }

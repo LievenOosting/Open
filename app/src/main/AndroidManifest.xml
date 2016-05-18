@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListHadHeadActivity" />
+        <activity android:name=".ListRecycleActivity" />
         <activity android:name=".ViewPagerTestActivity" />
         <activity android:name=".ViewPager1TestActivity" />
         <activity android:name=".ViewPager2TestActivity" />

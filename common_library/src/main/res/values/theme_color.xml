@@ -3,7 +3,7 @@
 
     <!-- day -->
     <color name="day_colorPrimary">#330099</color>
-    <color name="day_colorPrimaryDark">#ff0000</color>
+    <color name="day_colorPrimaryDark">#330066</color>
     <color name="day_textColor">#333333</color>
     <color name="day_infoTextColor">#999999</color>
     <color name="day_layout_bg_normal">#f6f6f6</color>

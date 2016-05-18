@@ -225,6 +225,11 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<RecyclerV
         return mData;
     }
 
+    public void clear() {
+        mData.clear();
+    }
+
+
     /**
      * Get the data item associated with the specified position in the data set.
      *
@@ -527,10 +532,10 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<RecyclerV
     /**
      * Implement this method and use the helper to adapt the view to the given item.
      *
-     * @param helper A fully initialized helper.
+     * @param holder A fully initialized helper.
      * @param item   The item that needs to be displayed.
      */
-    protected abstract void convert(BaseViewHolder helper, T item);
+    protected abstract void convert(BaseViewHolder holder, T item);
 
 
     @Override

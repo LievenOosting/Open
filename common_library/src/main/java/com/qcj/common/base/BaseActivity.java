@@ -82,8 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
             mRootLayout = (ViewGroup) findViewById(R.id.root_layout);
             mToolbar = (Toolbar) findViewById(R.id.toolbar);
             mInflater.inflate(getLayoutId(), mRootLayout);
-            mToolbar.setTitle("呵呵哒");
-            mToolbar.setLogo(R.mipmap.loading);
+            mToolbar.setTitle("");
             setSupportActionBar(mToolbar);
         } else {
             setContentView(getLayoutId());

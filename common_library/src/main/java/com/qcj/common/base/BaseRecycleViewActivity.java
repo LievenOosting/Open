@@ -3,12 +3,16 @@ package com.qcj.common.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.R;
 import com.qcj.common.adapter.CommonAdapter;
+import com.qcj.common.adapter.recycleview.BaseQuickAdapter;
 import com.qcj.common.cache.CacheManager;
 import com.qcj.common.interf.RefreshListener;
 import com.qcj.common.model.Entity;
@@ -33,8 +37,8 @@ import java.util.List;
  * @param <T>
  */
 @SuppressLint("NewApi")
-public abstract class BaseListActivity<T extends Entity> extends BaseActivity
-        implements RefreshListener {
+public abstract class BaseRecycleViewActivity<T extends Entity> extends BaseActivity
+        implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     /***************
      * 列表存在的状态
      *********************/
@@ -46,9 +50,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
     /***************
      * 列表存在的状态
      *********************/
+    public static int PAGE_SIZE = 20;
     public static final String BUNDLE_KEY_CATALOG = "BUNDLE_KEY_CATALOG";
-    protected BaseListView mListView;
-    protected CommonAdapter<T> mAdapter;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected RecyclerView mRecyclerView;
+    protected BaseQuickAdapter<T> mAdapter;
     protected EmptyLayout mErrorLayout;
     protected int mStoreEmptyState = -1;
     protected int mCurrentPage = 0;
@@ -59,14 +65,16 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
 
     @Override
     protected int getLayoutId() {
-        return R.layout.base_fragment_pull_refresh_listview;
+        return R.layout.base_activity_recycleview;
     }
 
     @Override
     public void initView() {
-        mListView = (BaseListView) findViewById(R.id.listview);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_list);
         mErrorLayout = (EmptyLayout) findViewById(R.id.error_layout);
-        mListView.setRefreshListener(this);  //添加事件
+        mSwipeRefreshLayout.setOnRefreshListener(this);  //添加事件
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -82,11 +90,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
             }
         });
         if (mAdapter != null) {
-            mListView.setAdapter(mAdapter);
+            mRecyclerView.setAdapter(mAdapter);
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         } else {
             mAdapter = getCommonAdapter();
-            mListView.setAdapter(mAdapter);
+            mRecyclerView.setAdapter(mAdapter);
 
             if (requestDataIfViewCreated()) {
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
@@ -100,6 +108,19 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         if (mStoreEmptyState != -1) {
             mErrorLayout.setErrorType(mStoreEmptyState);
         }
+        //配置adapter
+
+        mAdapter.setOnLoadMoreListener(this);
+        mAdapter.openLoadMore(PAGE_SIZE, true);
+        setItemAnimation();
+    }
+
+    /**
+     * 添加item出场时候的动画
+     */
+    protected void setItemAnimation() {
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
+        mAdapter.isFirstOnly(false);
     }
 
 
@@ -110,30 +131,50 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         super.onDestroy();
     }
 
-    protected abstract CommonAdapter<T> getCommonAdapter();
+    protected abstract BaseQuickAdapter<T> getCommonAdapter();
 
 
     @Override
-    public void doRefreshHead() {
+    public void onRefresh() {
         if (mState == STATE_REFRESH) {
-            mListView.onStopLoad();
             return;
         }
         // 设置顶部正在刷新
-        mListView.setSelection(0);
+        setSwipeRefreshLoadingState();
         mCurrentPage = 0;
         mState = STATE_REFRESH;
         requestData(true);
     }
 
     @Override
-    public void doRefreshFooter() {
+    public void onLoadMoreRequested() {
         if (mState == STATE_NONE) {
             mCurrentPage++;
             mState = STATE_LOADMORE;
             requestData(false);
         } else {
-            mListView.onStopLoad();
+            return;
+        }
+    }
+
+    /**
+     * 设置顶部正在加载的状态
+     */
+    private void setSwipeRefreshLoadingState() {
+        if (mSwipeRefreshLayout != null) {
+            mSwipeRefreshLayout.setRefreshing(true);
+            // 防止多次重复刷新
+            mSwipeRefreshLayout.setEnabled(false);
+        }
+    }
+
+    /**
+     * 设置顶部加载完毕的状态
+     */
+    private void setSwipeRefreshLoadedState() {
+        if (mSwipeRefreshLayout != null) {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mSwipeRefreshLayout.setEnabled(true);
         }
     }
 
@@ -235,7 +276,7 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
     public void onResume() {
         super.onResume();
         if (onTimeRefresh()) {
-            doRefreshHead();
+            onRefresh();
         }
     }
 
@@ -324,6 +365,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
         }
     };
 
+    /**
+     * 执行加载数据成功后
+     *
+     * @param data
+     */
     protected void executeOnLoadDataSuccess(List<T> data) {
         if (data == null) {
             data = new ArrayList<T>();
@@ -340,13 +386,11 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
             }
         }
         mAdapter.addData(data);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataChangedAfterLoadMore(true);
         //当数据为空的时候
-        if (mAdapter.getCount() == 0) {
+        if (mAdapter.getItemCount() == 0) {
             if (needShowEmptyNoData()) {
                 mErrorLayout.setErrorType(EmptyLayout.NODATA);
-            } else {
-                mListView.setState(BaseListView.STATE_EMPTY_ITEM);
             }
         }
     }
@@ -383,17 +427,16 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
             mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
         } else {
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-            mListView.setState(BaseListView.STATE_NETWORK_ERROR);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     // 完成刷新
     protected void executeOnLoadFinish() {
-        if (mListView == null) {
+        if (mRecyclerView == null) {
             return;
         }
-        mListView.onStopLoad();
+        setSwipeRefreshLoadedState();
         mState = STATE_NONE;
     }
 
@@ -426,7 +469,7 @@ public abstract class BaseListActivity<T extends Entity> extends BaseActivity
                 List<T> data = parseList(new ByteArrayInputStream(
                         reponseData));
                 //强行转为序列化
-                new SaveCacheTask(BaseListActivity.this, (Serializable) data, getCacheKey()).execute();
+                new SaveCacheTask(BaseRecycleViewActivity.this, (Serializable) data, getCacheKey()).execute();
                 list = data;
             } catch (Exception e) {
                 e.printStackTrace();
