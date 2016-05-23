@@ -6,24 +6,36 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Looper;
+import android.util.Log;
 
 import com.qcj.common.base.AppContext;
+import com.qcj.common.util.DateUtil;
+import com.qcj.common.util.FileUtils;
 import com.qcj.common.util.UIHelper;
 
 import org.apache.http.HttpException;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.ConnectException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Date;
 
 
-@SuppressWarnings("serial")
+/**
+ * 来自开源中国的源码
+ */
+
 public class AppException extends Exception implements UncaughtExceptionHandler {
 
-    /** 定义异常类型 */
+    /**
+     * 定义异常类型
+     */
     public final static byte TYPE_NETWORK = 0x01;
     public final static byte TYPE_SOCKET = 0x02;
     public final static byte TYPE_HTTP_CODE = 0x03;
@@ -38,7 +50,9 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
     // 异常的状态码，这里一般是网络请求的状态码
     private int code;
 
-    /** 系统默认的UncaughtException处理类 */
+    /**
+     * 系统默认的UncaughtException处理类
+     */
     private AppContext mContext;
 
     private AppException(Context context) {
@@ -116,7 +130,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
 
     /**
      * 获取APP异常崩溃处理对象
-     * 
+     *
      * @param context
      * @return
      */
@@ -133,7 +147,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
 
     /**
      * 自定义异常处理:收集错误信息&发送错误报告
-     * 
+     *
      * @param ex
      * @return true:处理了该异常信息;否则返回false
      */
@@ -145,6 +159,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
         try {
             success = saveToSDCard(ex);
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (!success) {
                 return false;
@@ -168,23 +183,25 @@ public class AppException extends Exception implements UncaughtExceptionHandler 
 
     private boolean saveToSDCard(Throwable ex) throws Exception {
         boolean append = false;
-//        File file = FileUtils.getSaveFile("OSChina", "OSCLog.log");
-//        if (System.currentTimeMillis() - file.lastModified() > 5000) {
-//            append = true;
-//        }
-//        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(
-//                file, append)));
-//        // 导出发生异常的时间
-//        pw.println(SystemTool.getDataTime("yyyy-MM-dd-HH-mm-ss"));
-//        // 导出手机信息
-//        dumpPhoneInfo(pw);
-//        pw.println();
-//        // 导出异常的调用栈信息
-//        ex.printStackTrace(pw);
-//        pw.println();
-//        pw.close();
+        File file = FileUtils.getSaveFile(AppConfig.FOLDER_NAME, AppConfig.CRASHLOG);
+        if (System.currentTimeMillis() - file.lastModified() > 5000) {
+            append = true;
+        }
+        FileWriter fileWriter = new FileWriter(file, append);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        PrintWriter pw = new PrintWriter(bufferedWriter);
+        // 导出发生异常的时间
+        pw.println(DateUtil.strTodate2(DateUtil.DateToStamp(new Date())));
+        // 导出手机信息
+        dumpPhoneInfo(pw);
+        pw.println();
+        // 导出异常的调用栈信息
+        ex.printStackTrace(pw);
+        pw.println();
+        pw.close();
         return append;
     }
+
 
     private void dumpPhoneInfo(PrintWriter pw) throws NameNotFoundException {
         // 应用的版本名称和版本号

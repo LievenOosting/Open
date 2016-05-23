@@ -361,7 +361,7 @@ public class TDevice {
 
     public static void gotoMarket(Context context, String pck) {
         if (!isHaveMarket(context)) {
-            AppContext.showToast("你手机中没有安装应用市场！");
+            ToastUtils.showToast("你手机中没有安装应用市场！");
             return;
         }
         Intent intent = new Intent();
@@ -596,8 +596,7 @@ public class TDevice {
         ClipboardManager clip = (ClipboardManager) BaseApplication.context()
                 .getSystemService(Context.CLIPBOARD_SERVICE);
         clip.setText(string);
-//        AppContext.showToast(R.string.copy_success);
-        AppContext.showToast("复制成功");
+        ToastUtils.showToast("复制成功");
     }
 
     /**

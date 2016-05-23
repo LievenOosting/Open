@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         DialogControl, UIInterface, PopView.PopResultListener {
     public static final String INTENT_ACTION_EXIT_APP = "INTENT_ACTION_EXIT_APP";
 
-    private boolean _isVisible;
+    private boolean _isVisible = true;
     private ProgressDialog _waitDialog;
     protected LayoutInflater mInflater;
     private SystemBarTintManager mTintManager;

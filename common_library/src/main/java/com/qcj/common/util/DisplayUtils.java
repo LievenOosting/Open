@@ -54,7 +54,7 @@ public class DisplayUtils {
 	/**
 	 * px转sp
 	 * 
-	 * @param fontScale
+	 * @param context
 	 * @param pxVal
 	 * @return
 	 */

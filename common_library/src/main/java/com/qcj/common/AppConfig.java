@@ -13,42 +13,37 @@ import java.util.Properties;
 
 public class AppConfig {
     public final static String ACTIVITY_TRANSFER_BUNDLE = "activity_transfer_bundle";
+    public final static String FOLDER_NAME = "common_library";
+    public final static String CRASHLOG = "crash.log";   //bug信息收集后保存的文件名
     private final static String APP_CONFIG = "config";
-
     public final static String CONF_COOKIE = "cookie";
-
     public final static String CONF_APP_UNIQUEID = "APP_UNIQUEID";
-
     public static final String KEY_LOAD_IMAGE = "KEY_LOAD_IMAGE";
-    public static final String KEY_NOTIFICATION_ACCEPT = "KEY_NOTIFICATION_ACCEPT";
-    public static final String KEY_NOTIFICATION_SOUND = "KEY_NOTIFICATION_SOUND";
-    public static final String KEY_NOTIFICATION_VIBRATION = "KEY_NOTIFICATION_VIBRATION";
-    public static final String KEY_NOTIFICATION_DISABLE_WHEN_EXIT = "KEY_NOTIFICATION_DISABLE_WHEN_EXIT";
-    public static final String KEY_CHECK_UPDATE = "KEY_CHECK_UPDATE";
-    public static final String KEY_DOUBLE_CLICK_EXIT = "KEY_DOUBLE_CLICK_EXIT";
-
     public static final String KEY_TWEET_DRAFT = "KEY_TWEET_DRAFT";
     public static final String KEY_NOTE_DRAFT = "KEY_NOTE_DRAFT";
-
     public static final String KEY_FRITST_START = "KEY_FRIST_START";
+    public static final String KEY_NIGHT_MODE_SWITCH = "night_mode_switch";
 
-    public static final String KEY_NIGHT_MODE_SWITCH="night_mode_switch";
-
-    public static final String APP_QQ_KEY = "100942993";
 
     // 默认存放图片的路径
     public final static String DEFAULT_SAVE_IMAGE_PATH = Environment
             .getExternalStorageDirectory()
             + File.separator
-            + "OSChina"
-            + File.separator + "osc_img" + File.separator;
+            + FOLDER_NAME
+            + File.separator + "img" + File.separator;
 
     // 默认存放文件下载的路径
     public final static String DEFAULT_SAVE_FILE_PATH = Environment
             .getExternalStorageDirectory()
             + File.separator
-            + "OSChina"
+            + FOLDER_NAME
             + File.separator + "download" + File.separator;
+    // 默认存放崩溃文地址
+    public final static String DEFAULT_CRASH_LOG = Environment
+            .getExternalStorageDirectory()
+            + File.separator
+            + FOLDER_NAME
+            + File.separator + CRASHLOG;
 
     private Context mContext;
     private static AppConfig appConfig;
@@ -77,10 +72,6 @@ public class AppConfig {
         FileInputStream fis = null;
         Properties props = new Properties();
         try {
-            // 读取files目录下的config
-            // fis = activity.openFileInput(APP_CONFIG);
-
-            // 读取app_config目录下的config
             File dirConf = mContext.getDir(APP_CONFIG, Context.MODE_PRIVATE);
             fis = new FileInputStream(dirConf.getPath() + File.separator
                     + APP_CONFIG);
@@ -99,10 +90,6 @@ public class AppConfig {
     private void setProps(Properties p) {
         FileOutputStream fos = null;
         try {
-            // 把config建在files目录下
-            // fos = activity.openFileOutput(APP_CONFIG, Context.MODE_PRIVATE);
-
-            // 把config建在(自定义)app_config的目录下
             File dirConf = mContext.getDir(APP_CONFIG, Context.MODE_PRIVATE);
             File conf = new File(dirConf, APP_CONFIG);
             fos = new FileOutputStream(conf);

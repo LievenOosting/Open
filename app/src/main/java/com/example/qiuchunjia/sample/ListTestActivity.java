@@ -1,13 +1,17 @@
 package com.example.qiuchunjia.sample;
 
+import android.util.Log;
+
 import com.example.qiuchunjia.sample.adapter.MyAdapter;
 import com.example.qiuchunjia.sample.api.ApiDataTest;
 import com.example.qiuchunjia.sample.bean.DataModel;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.qcj.common.base.BaseListActivity;
 import com.qcj.common.adapter.CommonAdapter;
 import com.qcj.common.util.JUtil;
 import com.qcj.common.util.StreamTool;
 
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +30,7 @@ public class ListTestActivity extends BaseListActivity<DataModel> {
         super.initView();
     }
 
+
     @Override
     protected CommonAdapter getCommonAdapter() {
         return new MyAdapter(this, null, R.layout.item_test_data);
@@ -40,6 +45,7 @@ public class ListTestActivity extends BaseListActivity<DataModel> {
     protected List parseList(InputStream is) throws Exception {
         String data = StreamTool.streamToString(is);
         org.json.JSONObject jsonObject = new org.json.JSONObject(data);
+        Log.d("ListTestActivity", jsonObject.toString());
         final JSONObject data1 = jsonObject.getJSONObject("data");
         if (data1.has("news")) {
             final JSONArray news = data1.getJSONArray("news");

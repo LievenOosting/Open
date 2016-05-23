@@ -125,33 +125,9 @@ public class ApiHttpClient {
 
     public static void setHttpClient(AsyncHttpClient c) {
         client = c;
-//        client.addHeader("Accept-Language", Locale.getDefault().toString());
-//        client.addHeader("Host", HOST);
-//        client.addHeader("Connection", "Keep-Alive");
-//        client.getHttpClient().getParams()
-//                .setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
-//
-//        setUserAgent(ApiClientHelper.getUserAgent(AppContext.getInstance()));
     }
 
-    public static void setUserAgent(String userAgent) {
-        client.setUserAgent(userAgent);
-    }
 
-    public static void setCookie(String cookie) {
-        client.addHeader("Cookie", cookie);
-    }
 
-    private static String appCookie;
 
-    public static void cleanCookie() {
-        appCookie = "";
-    }
-
-    public static String getCookie(AppContext appContext) {
-        if (appCookie == null || appCookie == "") {
-            appCookie = appContext.getProperty("cookie");
-        }
-        return appCookie;
-    }
 }

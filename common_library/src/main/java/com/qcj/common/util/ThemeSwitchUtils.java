@@ -7,7 +7,6 @@ import com.qcj.common.base.AppContext;
 
 /**
  * 白天和夜间模式切换
- * Created by 火蚁 on 15/5/26.
  */
 public class ThemeSwitchUtils {
 

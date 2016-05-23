@@ -37,6 +37,10 @@ import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 
+/**
+ * author：qcj
+ * 添加
+ */
 public class SpanUtil {
 	/**
 	 * 仅实现了大部分效果 有些些方法还需调整 后面有点偷懒 直接给了构造方法的参数 没有多写几个重载来更好地支持自定义

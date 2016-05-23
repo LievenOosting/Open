@@ -90,7 +90,7 @@ public class DateUtil {
 		try {
 			Long timestamp = Long.valueOf(time) * 1000;
 			Timestamp unixTime = new Timestamp(timestamp);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 			String d = format.format(unixTime);
 			return d;
 		} catch (NumberFormatException e) {

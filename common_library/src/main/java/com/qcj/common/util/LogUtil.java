@@ -4,13 +4,13 @@ import android.util.Log;
 /** 
  * Log统一管理类 
  *  
- *  
+ *
  *  
  */  
-public class L  
+public class LogUtil
 {  
   
-    private L()  
+    private LogUtil()
     {  
         /* cannot be instantiated */  
         throw new UnsupportedOperationException("cannot be instantiated");  
