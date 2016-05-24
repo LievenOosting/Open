@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
-    useLibrary 'org.apache.http.legacy'
+    useLibrary "org.apache.http.legacy"
     defaultConfig {
         applicationId "com.example.qiuchunjia.sample"
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     signingConfigs {
         release {
             storeFile file("gradlelearn.jks")

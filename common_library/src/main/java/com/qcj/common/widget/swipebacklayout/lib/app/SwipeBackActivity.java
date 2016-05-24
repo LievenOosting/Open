@@ -2,12 +2,11 @@
 package com.qcj.common.widget.swipebacklayout.lib.app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.qcj.common.base.BaseActivity;
 import com.qcj.common.widget.swipebacklayout.lib.SwipeBackLayout;
-import com.qcj.common.widget.swipebacklayout.lib.Utils;
+import com.qcj.common.widget.swipebacklayout.lib.SwipeBackUtils;
 
 
 public abstract class SwipeBackActivity extends BaseActivity implements SwipeBackActivityBase {
@@ -46,7 +45,7 @@ public abstract class SwipeBackActivity extends BaseActivity implements SwipeBac
 
     @Override
     public void scrollToFinishActivity() {
-        Utils.convertActivityToTranslucent(this);
+        SwipeBackUtils.convertActivityToTranslucent(this);
         getSwipeBackLayout().scrollToFinishActivity();
     }
 }

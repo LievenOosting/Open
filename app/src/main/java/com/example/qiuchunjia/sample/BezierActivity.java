@@ -1,5 +1,7 @@
 package com.example.qiuchunjia.sample;
 
+import android.os.Handler;
+
 import com.qcj.common.base.BaseActivity;
 
 /**
@@ -13,7 +15,6 @@ public class BezierActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
     }
 
     @Override
