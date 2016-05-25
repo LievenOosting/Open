@@ -11,7 +11,7 @@ import com.qcj.common.base.AppContext;
 public class ThemeSwitchUtils {
 
     public static void switchTheme(Context context) {
-
+           
     }
 
     public static int getTitleReadedColor() {

@@ -7,17 +7,17 @@ import java.util.Stack;
 
 /**
  * activity堆栈式管理
- * 
+ *
  * @author FireAnt（http://my.oschina.net/LittleDY）
  * @created 2014年10月30日 下午6:22:05
- * 
  */
 public class AppManager {
 
     private static Stack<Activity> activityStack;
     private static AppManager instance;
 
-    private AppManager() {}
+    private AppManager() {
+    }
 
     /**
      * 单一实例
@@ -91,9 +91,10 @@ public class AppManager {
         activityStack.clear();
     }
 
+
     /**
      * 获取指定的Activity
-     * 
+     *
      * @author kymjs
      */
     public static Activity getActivity(Class<?> cls) {
@@ -104,6 +105,21 @@ public class AppManager {
                 }
             }
         return null;
+    }
+
+    /**
+     * 是否是最后一个activity了
+     *
+     * @return
+     */
+    public boolean isLastActivity() {
+        if (activityStack == null) {
+            return false;
+        }
+        if (activityStack.size() == 1) {
+            return true;
+        }
+        return false;
     }
 
     /**

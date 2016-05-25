@@ -24,6 +24,7 @@
         <activity android:name=".ViewPager1TestActivity" />
         <activity android:name=".ViewPager2TestActivity" />
         <activity android:name=".BezierActivity" />
+        <activity android:name=".ChangeThemeActivity" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <!--往sdcard中写入数据的权限 -->

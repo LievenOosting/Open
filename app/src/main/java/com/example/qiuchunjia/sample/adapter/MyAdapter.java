@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.qiuchunjia.sample.BezierActivity;
+import com.example.qiuchunjia.sample.ChangeThemeActivity;
 import com.example.qiuchunjia.sample.ListHadHeadActivity;
 import com.example.qiuchunjia.sample.ListRecycleActivity;
 import com.example.qiuchunjia.sample.R;
@@ -44,6 +45,8 @@ public class MyAdapter extends CommonAdapter<DataModel> {
                                                            AppContext.getInstance().startActivity(mBaseActivity, BezierActivity.class, null);
                                                        } else if (pos == 4) {
                                                            AppContext.getInstance().startActivity(mBaseActivity, ListRecycleActivity.class, null);
+                                                       } else if (pos == 5) {
+                                                           AppContext.getInstance().startActivity(mBaseActivity, ChangeThemeActivity.class, null);
                                                        } else {
                                                            AppContext.getInstance().startActivity(mBaseActivity, ListHadHeadActivity.class, null);
                                                        }

@@ -33,8 +33,8 @@ public class AppContext extends BaseApplication {
         super.onCreate();
         instance = this;
         init();
-        Thread.setDefaultUncaughtExceptionHandler(AppException
-                .getAppExceptionHandler(this));
+//        Thread.setDefaultUncaughtExceptionHandler(AppException
+//                .getAppExceptionHandler(this));
         UIHelper.sendBroadcastForNotice(this);
     }
 

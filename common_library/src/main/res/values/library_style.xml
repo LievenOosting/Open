@@ -38,4 +38,11 @@
         <item name="shadow_right">@mipmap/shadow_right</item>
         <item name="shadow_bottom">@mipmap/shadow_bottom</item>
     </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
 </resources>

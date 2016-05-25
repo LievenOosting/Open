@@ -4,11 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,21 +48,12 @@ public abstract class BaseActivity extends AppCompatActivity implements
     private ViewGroup mRootLayout;  //根布局
     private Toolbar mToolbar;
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TDevice.hideSoftKeyboard(getCurrentFocus());
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        if (AppContext.getNightModeSwitch()) {
-            setTheme(R.style.AppBaseTheme_Night);
-        } else {
-            setTheme(R.style.AppBaseTheme_Light);
-        }
+        setChooseTheme();
         mInflater = LayoutInflater.from(this);
         AppManager.getAppManager().addActivity(this);
         onBeforeSetContentLayout();
@@ -71,6 +64,25 @@ public abstract class BaseActivity extends AppCompatActivity implements
         initData();
         setListener();
         _isVisible = true;
+    }
+
+    /**
+     * 设置选择的主题，默认的是白天的主题
+     */
+    public void setChooseTheme() {
+        if (AppContext.getNightModeSwitch()) {
+            setTheme(R.style.AppBaseTheme_Night);
+        } else {
+            setTheme(R.style.AppBaseTheme_Light);
+        }
+    }
+
+    /**
+     * 切换选择的主题
+     */
+    public void switchTheTheme() {
+        setChooseTheme();
+        this.recreate();
     }
 
     /**
@@ -111,7 +123,13 @@ public abstract class BaseActivity extends AppCompatActivity implements
         mTintManager = new SystemBarTintManager(this);
         mTintManager.setStatusBarTintEnabled(true);
         mTintManager.setNavigationBarTintEnabled(true);
-        mTintManager.setTintColor(getResources().getColor(R.color.day_colorPrimaryDark));
+        int[] ATTRS = {
+                R.attr.colorPrimaryDark,
+        };
+        TypedArray typedArray = this.getTheme().obtainStyledAttributes(ATTRS);
+        int color = typedArray.getColor(0, -1);
+        typedArray.recycle();
+        mTintManager.setTintColor(color);
     }
 
     /**
@@ -258,6 +276,13 @@ public abstract class BaseActivity extends AppCompatActivity implements
     public void finish() {
         super.finish();
         Anim.exit(this);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TDevice.hideSoftKeyboard(getCurrentFocus());
     }
 
     /*************************

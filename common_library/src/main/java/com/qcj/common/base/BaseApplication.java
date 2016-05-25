@@ -151,6 +151,7 @@ public class BaseApplication extends Application {
                 Context.MODE_MULTI_PROCESS);
     }
 
+
     /************************
      * activity之间的跳转方法
      ********************************************/
