@@ -1,21 +1,13 @@
 package com.qcj.common.util;
 
 
-
 import com.alibaba.fastjson.JSON;
 
 import java.util.List;
 
 /**
- * 使用jackson 解析数据
- * Created by luffy on 15/12/8.
  */
 public class JUtil {
-//    public static ObjectMapper mapper;
-//
-//    static {
-//        mapper = new ObjectMapper();
-//    }
 
     /**
      * 解析从服务器拉下来的Json

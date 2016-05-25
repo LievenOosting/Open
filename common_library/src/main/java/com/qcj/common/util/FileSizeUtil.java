@@ -63,7 +63,6 @@ public class FileSizeUtil {
 	/**
 	 * 获取指定文件大小
 	 * 
-	 * @param f
 	 * @return
 	 * @throws Exception
 	 */

@@ -61,13 +61,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/googlepaly/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/googlepaly/jni" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/googlepaly/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/assets" type="java-test-resource" />
@@ -75,6 +68,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestGooglepaly/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testGooglepaly/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/assets" type="java-resource" />

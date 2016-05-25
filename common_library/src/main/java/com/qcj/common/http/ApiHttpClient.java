@@ -6,12 +6,6 @@ import android.util.Log;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.qcj.common.base.AppContext;
-import com.qcj.common.util.TLog;
-
-import org.apache.http.client.params.ClientPNames;
-
-import java.util.Locale;
 
 public class ApiHttpClient {
 
@@ -85,7 +79,6 @@ public class ApiHttpClient {
 
     public static void log(String log) {
         Log.d("BaseApi", log);
-        TLog.log("Test", log);
     }
 
     public static void post(String partUrl, AsyncHttpResponseHandler handler) {

@@ -19,7 +19,6 @@ public class DisplayUtils {
 	 * dp转px
 	 * 
 	 * @param context
-	 * @param val
 	 * @return
 	 */
 	public static int dp2px(Context context, float dpVal) {
@@ -31,7 +30,6 @@ public class DisplayUtils {
 	 * sp转px
 	 * 
 	 * @param context
-	 * @param val
 	 * @return
 	 */
 	public static int sp2px(Context context, float spVal) {
