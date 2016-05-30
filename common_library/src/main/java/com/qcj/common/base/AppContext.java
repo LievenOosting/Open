@@ -11,6 +11,7 @@ import com.qcj.common.http.ApiHttpClient;
 import com.qcj.common.util.MethodsCompat;
 import com.qcj.common.util.StringUtils;
 import com.qcj.common.util.UIHelper;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Properties;
 import java.util.UUID;
@@ -24,13 +25,11 @@ public class AppContext extends BaseApplication {
 
     private static AppContext instance;
 
-    private int loginUid;
-
-    private boolean login;
-
     @Override
     public void onCreate() {
         super.onCreate();
+        //bug收集，托管到腾讯bugly里面用于后期的分析
+        CrashReport.initCrashReport(getApplicationContext(), "900031727", false);
         instance = this;
         init();
 //        Thread.setDefaultUncaughtExceptionHandler(AppException
